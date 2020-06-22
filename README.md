@@ -23,7 +23,7 @@ wsl -d DebianLamp
 - User: ```debian```
 - Password : ```aaaa```
 
-### Windows intégration
+### Windows integration
 
 #### Integrate apache root
 Replace **{WINDOWS_SHARED_DISK}** and **{WINDOWS_SHARED_FOLDER}** by correct values
