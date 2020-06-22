@@ -6,7 +6,7 @@ Dowload wsl image https://drive.google.com/file/d/1mAeNE9SsicZVdUgRW3LXrgOFX6MZn
 Import wsl : run command in Powershell. Think to replace **{DestinationFolder}** and **{DownloadFolder}**
 
 ```sh
-wsl --import `DebianLamp {DestinationFolder} {DownloadFolder}\Debian.wsl.tar.gz
+wsl --import DebianLamp {DestinationFolder} {DownloadFolder}\Debian.wsl.tar.gz
 ```
 
 Start wsl with Powershell
