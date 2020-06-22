@@ -21,7 +21,7 @@ wsl -d DebianLamp
 
 ### MySQL
 - User: ```debian```
-- Password : ```aaa```
+- Password : ```aaaa```
 
 ### Installed softwares
 
