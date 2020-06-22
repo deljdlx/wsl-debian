@@ -54,6 +54,7 @@ sudo chmod -R 775 /var/www/html
 - ...
 
 ### Todo
+- Better readme
 - more bashrc alias
 - better apache configuration
 
