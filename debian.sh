@@ -68,6 +68,7 @@ installPHP()
     sudo apt-get install -y php-mysql
     sudo apt-get install -y php-pdo
     sudo apt-get install -y php-xdebug
+    sudo apt-get install -y php-intl
     sudo service apache2 restart
 }
 
