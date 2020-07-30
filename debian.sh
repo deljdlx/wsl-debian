@@ -18,9 +18,31 @@ installEssentials()
     #installation de wget (est généralement préinstallé)==
     sudo apt-get install -y wget
 
+    #curl
+    sudo apt-get install -y curl
+
+
     #installation zip ; au cas-où
     sudo apt-get install -y unzip
 
+    #imagemagick
+    sudo apt-get install -y imagemagick
+    
+
+}
+
+
+installFishShell()
+{
+    echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee -a /etc/apt/sources.list
+    wget -q -O - https://download.opensuse.org/repositories/shells:fish:release:3/Debian_10/Release.key | sudo apt-key add -
+    sudo apt update
+    sudo apt install fish
+}
+
+reinitMySQL()
+{
+    sudo mysql_install_db --user=mysql
 }
 
 
@@ -63,12 +85,15 @@ installPHP()
     sudo apt-get install -y php-zip
     sudo apt-get install -y php-gd
     sudo apt-get install -y php-xml
+    sudo apt-get install -y php-simplexml
     sudo apt-get install -y php-sqlite3
     sudo apt-get install -y php-mbstring
     sudo apt-get install -y php-mysql
     sudo apt-get install -y php-pdo
     sudo apt-get install -y php-xdebug
     sudo apt-get install -y php-intl
+    sudo apt-get install -y php-curl
+    sudo apt-get install -y php-imagick
     sudo service apache2 restart
 }
 
@@ -80,6 +105,11 @@ installPHPTools()
     php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
     php composer-setup.php --quiet
     sudo mv composer.phar /usr/local/bin/composer
+
+    #installatin phpcs=========================================
+    wget -O phpcs.phar https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+    sudo chmod a+x phpcs.phar
+    sudo mv phpcs.phar /usr/local/bin/phpcs.phar
 
     #installatin cs-fixer=========================================
     cd /tmp
@@ -154,12 +184,26 @@ configureProfile()
 }
 
 
-installJSStack()
+installNPM()
 {
     #install npm==========================================
-    sudo apt-get install -y npm
+    #https://github.com/nodesource/distributions/blob/master/README.md
+    cd /tmp
+    curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -
+    sudo apt-get install -y nodejs
+
+    mkdir ~/.npm-global
+    npm config set prefix '~/.npm-global'
+    echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.profile
+    source ~/.profile
+    npm install -g jshint
 }
 
+
+installVueJS()
+{
+    npm install -g @vue/cli
+}
 
 #==========================================================================================
 #==========================================================================================
@@ -184,8 +228,34 @@ installGit
 installJSStack
 
 
+#sudo apt-get install -y debconf
+#sudo /usr/sbin/dpkg-reconfigure locales
+#apt-get install xfce4
+#sudo apt-get install -y openssh-server
+#dpkg-reconfigure locales
+
+
+#su -
+#usermod -aG sudo debian
 
 
 
+#sudo apt install software-properties-common apt-transport-https curl
+#curl -sSL https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+#sudo add-apt-repository "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main"
+#sudo apt update
+#sudo apt install code
+
+
+
+#sudo vim /etc/group
+#vboxsf:x:1001:www-data
+
+#sudo apt install build-essential dkms linux-headers-$(uname -r)
+#sudo mkdir -p /mnt/cdrom
+#sudo mount /dev/cdrom /mnt/cdrom
+#sudo sh ./VBoxLinuxAdditions.run --nox11
+
+#npm install -g yo generator-code
 
 exit 0
